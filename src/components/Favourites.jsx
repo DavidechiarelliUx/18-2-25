@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 const Favourites = () => {
-  const favourites = useSelector((state) => state.favourite.content);
+  const favourites = useSelector((state) => state.favourites?.content || []);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();

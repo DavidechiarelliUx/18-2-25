@@ -1,9 +1,10 @@
 import { Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToFavouritesAction, removeFavouritesAction } from "../redux/actions";
 
 const Job = ({ data }) => {
-  const favourites = useSelector((state) => state.favourite.content);
+  const favourites = useSelector((state) => state.favourites.content);
   const dispatch = useDispatch();
 
   const isFav = favourites.includes(data.company_name);
@@ -15,10 +16,7 @@ const Job = ({ data }) => {
           <Button
             variant="danger"
             onClick={() => {
-              dispatch({
-                type: "REMOVEFAVOURITES",
-                payload: data.company_name,
-              });
+              dispatch(removeFavouritesAction(data));
             }}
           >
             ❌
@@ -27,10 +25,7 @@ const Job = ({ data }) => {
           <Button
             variant="info"
             onClick={() => {
-              dispatch({
-                type: "ADDFAVOURITES",
-                payload: data.company_name,
-              });
+              dispatch(addToFavouritesAction(data));
             }}
           >
             💼
